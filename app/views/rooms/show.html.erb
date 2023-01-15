@@ -1,4 +1,3 @@
-<p style="color: green"><%= notice %></p>
 
 <%= render @room %>
 
@@ -8,3 +7,21 @@
 
   <%= button_to "Destroy this room", @room, method: :delete %>
 </div>
+
+<hr>
+<h4>Messages</h4>
+<div>
+  <% @room.messages.each do |message| %>
+    <p>
+      Message: <strong> <%= message.name %> </strong>
+    </p>
+  <% end %>
+</div>
+
+
+<hr>
+<h5>Create Message</h5>
+<%= form_with(model: [@room, Message.new]) do |f| %>
+  <%= f.text_field :name %>
+  <%= f.submit %>
+<% end %>
