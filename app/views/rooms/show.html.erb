@@ -1,3 +1,4 @@
+<%= turbo_stream_from @messages_channel %>
 
 <%= render @room %>
 
@@ -10,13 +11,12 @@
 
 <hr>
 <h4>Messages</h4>
-<div>
+
+<%= turbo_frame_tag "room_messages_#{@room.id}" do %>
   <% @room.messages.each do |message| %>
-    <p>
-      Message: <strong> <%= message.name %> </strong>
-    </p>
+    <%= render 'messages/message', message: message %>
   <% end %>
-</div>
+<% end %>
 
 
 <hr>
