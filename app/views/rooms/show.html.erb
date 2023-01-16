@@ -1,27 +1,31 @@
-<%= turbo_stream_from @messages_channel %>
+<%= turbo_frame_tag 'rooms_controller' do %>
+  <main class="flex w-full h-screen justify-center bg-gray-200">
+    <nav class="w-1/6 flex flex-col">
+      <%= render 'shared/nav_bar' %>
+    </nav>
 
-<%= render @room %>
+    <section class="w-5/6 flex flex-col items-center gap-5 h-screen">
+      <%= turbo_stream_from @messages_channel %>
+      <%= render @room %>
 
-<div>
-  <%= link_to "Edit this room", edit_room_path(@room) %> |
-  <%= link_to "Back to rooms", rooms_path %>
+      <div class="w-full">
+        <h4 class="text-center font-semibold text-xl">Messages</h4>
+        <%= turbo_frame_tag "room_messages_#{@room.id}" do %>
+          <div class='h-96 w-full bg-white rounded-lg p-2'>
+            <% @room.messages.each do |message| %>
+              <%= render 'messages/message', message: message %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
 
-  <%= button_to "Destroy this room", @room, method: :delete %>
-</div>
-
-<hr>
-<h4>Messages</h4>
-
-<%= turbo_frame_tag "room_messages_#{@room.id}" do %>
-  <% @room.messages.each do |message| %>
-    <%= render 'messages/message', message: message %>
-  <% end %>
-<% end %>
-
-
-<hr>
-<h5>Create Message</h5>
-<%= form_with(model: [@room, Message.new]) do |f| %>
-  <%= f.text_field :name %>
-  <%= f.submit %>
+      <div>
+        <h5>Create Message</h5>
+        <%= form_with(model: [@room, Message.new]) do |f| %>
+          <%= f.text_field :name %>
+          <%= f.submit %>
+        <% end %>
+      </div>
+    </section>
+  </main>
 <% end %>
