@@ -10,13 +10,13 @@
 
       <div class="w-full">
         <h4 class="text-center font-semibold text-xl">Messages</h4>
+        <div class='h-96 w-full bg-white rounded-lg p-2'>
         <%= turbo_frame_tag "room_messages_#{@room.id}" do %>
-          <div class='h-96 w-full bg-white rounded-lg p-2'>
-            <% @room.messages.each do |message| %>
-              <%= render 'messages/message', message: message %>
-            <% end %>
-          </div>
+          <% @room.messages.order(created_at: :desc).each do |message| %>
+            <%= render 'messages/message', message: message %>
+          <% end %>
         <% end %>
+        </div>
       </div>
 
       <div>
