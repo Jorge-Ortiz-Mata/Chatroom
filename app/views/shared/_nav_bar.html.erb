@@ -1,0 +1,3 @@
+<% Room.all.each do |room| %>
+  <p class="my-2">Room: <%= link_to "#{room.name}",room_path(room), class:"font-semibold mx-2" %></p>
+<% end %>
