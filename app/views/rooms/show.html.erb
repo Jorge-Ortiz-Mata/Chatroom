@@ -1,21 +1,19 @@
 <%= turbo_frame_tag 'rooms_controller' do %>
-  <main class="flex w-full h-screen justify-center bg-gray-200">
-    <nav class="w-1/6 flex flex-col">
-      <%= render 'shared/nav_bar' %>
-    </nav>
+  <main class="flex w-full h-screen justify-center bg-teal-900">
+    <%= render 'shared/nav_bar' %>
 
-    <section class="w-5/6 flex flex-col items-center gap-5 h-screen">
+    <section class="w-5/6 flex flex-col items-center justify-center gap-5 h-screen">
       <%= turbo_stream_from @messages_channel %>
       <%= render @room %>
 
       <div class="w-full">
         <h4 class="text-center font-semibold text-xl">Messages</h4>
-        <div class='h-96 w-full bg-white rounded-lg p-2'>
-        <%= turbo_frame_tag "room_messages_#{@room.id}" do %>
-          <% @room.messages.order(created_at: :desc).each do |message| %>
-            <%= render 'messages/message', message: message %>
+        <div class='h-96 w-full bg-white rounded-lg p-2 overflow-y-auto'>
+          <%= turbo_frame_tag "room_messages_#{@room.id}" do %>
+            <% @room.messages.order(:created_at).each do |message| %>
+              <%= render 'messages/message', message: message %>
+            <% end %>
           <% end %>
-        <% end %>
         </div>
       </div>
 

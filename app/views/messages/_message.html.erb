@@ -1,9 +1,3 @@
-<% if current_user == message.user %>
-  <div class="bg-gray-100 px-3 py-1 my-1 flex rounded items-center gap-2">
-    <span class="text-gray-600 font-semibold"><%= "#{message.user.email}:" %></span><span><%= message.name %></span>
-  </div>
-<% else %>
-  <div class="bg-gray-100 px-3 py-1 my-1 flex rounded items-center justify-end gap-2">
-    <span><%= message.name %></span><span class="text-gray-600 font-semibold"><%= ":#{message.user.email}" %></span>
-  </div>
-<% end %>
+<div class="bg-gray-100 px-3 py-1 my-1 flex rounded items-center gap-2">
+  <span class="text-gray-600 font-semibold"><%= "#{message.user.email}:" %></span><span><%= message.name %></span>
+</div>

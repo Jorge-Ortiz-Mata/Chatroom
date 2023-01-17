@@ -1,4 +1,26 @@
-<h3 class="flex text-xl font-bold">My Rooms</h3>
-<% Room.all.each do |room| %>
-  <%= link_to "#{room.name}",room_path(room), class:"font-semibold mx-2 bg-gray-100 text-black rounded text-sm px-1 py-3 my-5" %>
-<% end %>
+<%= turbo_stream_from @rooms_channel %>
+
+<nav class="w-1/6 flex flex-col border border-teal-500">
+  <section class="flex flex-col items-center">
+    <h3 class="text-xl font-bold text-white my-5 text-center">My Rooms</h3>
+    <%= turbo_frame_tag 'form_room_component' do %>
+      <%= link_to new_room_path, id: 'new_room_path', class: 'rounded px-3 py-1 bg-green-700 text-white font-semibold text-sm' do %>
+        Create new room
+      <% end %>
+    <% end %>
+    <div class="flex flex-col max-h-48 overflow-y-auto mt-5 w-full" id="rooms">
+      <% Room.all.each do |room| %>
+        <%= render 'rooms/single_room', room: room %>
+      <% end %>
+    </div>
+  </section>
+  <section class="flex flex-col mt-5">
+    <h3 class="text-xl font-bold text-white my-5 text-center">Users</h3>
+    <div class="flex flex-col max-h-48 overflow-y-auto">
+      <% User.all.each do |user| %>
+
+        <%#= link_to "#{room.name}", room_path(room), class:"font-semibold my-2 text-white rounded text-sm p-2 border" %>
+      <% end %>
+    </div>
+  </section>
+</nav>
