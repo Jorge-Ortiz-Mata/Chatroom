@@ -1,14 +1,14 @@
 <%= turbo_stream_from @rooms_channel %>
 
 <nav class="w-1/6 flex flex-col border border-teal-500">
-  <section class="flex flex-col items-center">
-    <h3 class="text-xl font-bold text-white my-5 text-center">My Rooms</h3>
+  <section class="flex flex-col items-center pt-5">
     <%= turbo_frame_tag 'form_room_component' do %>
       <%= link_to new_room_path, id: 'new_room_path', class: 'rounded px-3 py-1 bg-green-700 text-white font-semibold text-sm' do %>
         Create new room
       <% end %>
     <% end %>
-    <div class="flex flex-col max-h-48 overflow-y-auto mt-5 w-full" id="rooms">
+    <h3 class="text-xl font-bold text-white mt-5 text-center">My Rooms</h3>
+    <div class="flex flex-col max-h-48 overflow-y-auto w-full" id="rooms">
       <% Room.all.each do |room| %>
         <%= render 'rooms/single_room', room: room %>
       <% end %>

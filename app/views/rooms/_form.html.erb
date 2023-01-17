@@ -1,12 +1,12 @@
 <%= turbo_frame_tag 'form_room_component' do %>
   <%= form_with(model: room, class: 'flex flex-col') do |form| %>
     <% if room.errors.any? %>
-      <div style="color: red">
-        <h2><%= pluralize(room.errors.count, "error") %> prohibited this room from being saved:</h2>
+      <div class="bg-red-300 rounded m-2 p-2">
+        <h2 class="font-bold text-center text-red-800">An error ocurred while saving it.</h2>
 
         <ul>
           <% room.errors.each do |error| %>
-            <li><%= error.full_message %></li>
+            <li class="font-semibold text-sm text-red-800"> - <%= error.full_message %></li>
           <% end %>
         </ul>
       </div>

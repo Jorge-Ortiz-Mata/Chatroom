@@ -21,6 +21,8 @@ class RoomsController < ApplicationController
     respond_to do |format|
       if @room.save
         format.turbo_stream
+      else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace('form_room_component', partial: 'rooms/form', locals: { room: @room }) }
       end
     end
   end
