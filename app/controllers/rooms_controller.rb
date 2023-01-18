@@ -21,7 +21,7 @@ class RoomsController < ApplicationController
     respond_to do |format|
       if @room.save
         RoomUser.create(room: @room, user: current_user)
-        format.turbo_stream { render turbo_stream: turbo_stream.append('rooms', partial: 'rooms/single_room', locals: { room: @room }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.append('rooms', partial: 'sidebar/single_room', locals: { room: @room }) }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace('form_room_component', partial: 'rooms/form', locals: { room: @room }) }
       end
