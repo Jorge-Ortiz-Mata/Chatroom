@@ -48,6 +48,10 @@ class RoomsController < ApplicationController
 
   def add_user
     RoomUser.create!(user_id: params[:user_id], room_id: params[:room_id])
+
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.replace('room_details', partial: 'rooms/room/details', locals: { room: Room.find(params[:room_id]) }) }
+    end
   end
 
   private
