@@ -7,7 +7,7 @@ class Message < ApplicationRecord
       @messages_channel,
       partial: 'messages/message',
       locals: {message: self},
-      target: "room_messages_#{self.room.id}"
+      target: "messages"
     )
   end
 end

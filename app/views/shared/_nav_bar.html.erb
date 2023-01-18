@@ -8,8 +8,8 @@
       <% end %>
     <% end %>
     <h3 class="text-xl font-bold text-white mt-5 text-center">My Rooms</h3>
-    <div class="flex flex-col max-h-48 overflow-y-auto w-full" id="rooms">
-      <% Room.all.each do |room| %>
+    <div class="flex px-5 gap-2 max-h-48 overflow-y-auto w-full" id="rooms">
+      <% current_user.rooms.all.each do |room| %>
         <%= render 'rooms/single_room', room: room %>
       <% end %>
     </div>

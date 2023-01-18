@@ -2,27 +2,30 @@
   <main class="flex w-full h-screen justify-center bg-teal-900">
     <%= render 'shared/nav_bar' %>
 
-    <section class="w-5/6 flex flex-col items-center justify-center gap-5 h-screen">
-      <%= turbo_stream_from @messages_channel %>
-      <%= render @room %>
+    <section class="w-5/6 flex flex-col items-center justify-center gap-5 h-screen px-5">
+      <div class="flex flex-col items-center w-full justify-center">
+        <%= turbo_stream_from @messages_channel %>
+        <%= render @room %>
+      </div>
 
-      <div class="w-full">
-        <h4 class="text-center font-semibold text-xl">Messages</h4>
-        <div class='h-96 w-full bg-white rounded-lg p-2 overflow-y-auto'>
-          <%= turbo_frame_tag "room_messages_#{@room.id}" do %>
+      <div class="w-4/6 flex flex-col items-center">
+        <h4 class="text-center font-semibold text-xl text-white mb-5"> <%= @room.name %> - Chat</h4>
+        <div class='h-96 w-full bg-white rounded-lg p-2 overflow-y-auto my-5'>
+          <div id="messages">
             <% @room.messages.order(:created_at).each do |message| %>
               <%= render 'messages/message', message: message %>
             <% end %>
+          </div>
+        </div>
+
+        <div class="w-full flex flex-col">
+          <%= form_with(model: [@room, Message.new], class: 'flex flex-col w-full') do |f| %>
+            <div class="flex w-full">
+              <%= f.text_field :name, class: 'w-full rounded shadow text-sm font-semibold border border-gray-100' %>
+              <%= f.submit class: 'bg-green-600 text-white font-semibold rounded p-2' %>
+            </div>
           <% end %>
         </div>
-      </div>
-
-      <div>
-        <h5>Create Message</h5>
-        <%= form_with(model: [@room, Message.new]) do |f| %>
-          <%= f.text_field :name %>
-          <%= f.submit %>
-        <% end %>
       </div>
     </section>
   </main>

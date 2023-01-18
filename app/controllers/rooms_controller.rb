@@ -20,7 +20,8 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
-        format.turbo_stream
+        RoomUser.create(room: @room, user: current_user)
+        format.turbo_stream { render turbo_stream: turbo_stream.append('rooms', partial: 'rooms/single_room', locals: { room: @room }) }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace('form_room_component', partial: 'rooms/form', locals: { room: @room }) }
       end
@@ -43,6 +44,10 @@ class RoomsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to rooms_url, notice: "Room was successfully destroyed." }
     end
+  end
+
+  def add_user
+    debugger
   end
 
   private
