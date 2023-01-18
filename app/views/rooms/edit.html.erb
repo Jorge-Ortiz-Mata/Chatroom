@@ -1,3 +1,6 @@
 <%= turbo_frame_tag "room_#{@room.id}", class: 'flex w-full' do %>
-  <%= render "form", room: @room %>
+  <div class="flex flex-col w-full">
+    <h4 class="text-base font-medium text-white text-center">Edit <%= @room.name %> </h4>
+    <%= render "form", room: @room %>
+  </div>
 <% end %>

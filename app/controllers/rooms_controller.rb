@@ -23,7 +23,7 @@ class RoomsController < ApplicationController
         RoomUser.create(room: @room, user: current_user)
         format.turbo_stream { render turbo_stream: turbo_stream.append('rooms', partial: 'sidebar/single_room', locals: { room: @room }) }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace('form_room_component', partial: 'rooms/form', locals: { room: @room }) }
+        format.html { render :new }
       end
     end
   end
@@ -31,9 +31,9 @@ class RoomsController < ApplicationController
   def update
     respond_to do |format|
       if @room.update(room_params)
-        format.html { redirect_to room_url(@room), notice: "Room was successfully updated." }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("room_#{@room.id}", partial: 'sidebar/single_room', locals: { room: @room }) }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :edit }
       end
     end
   end
