@@ -47,7 +47,7 @@ class RoomsController < ApplicationController
   end
 
   def add_user
-    debugger
+    RoomUser.create!(user_id: params[:user_id], room_id: params[:room_id])
   end
 
   private
