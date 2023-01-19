@@ -12,6 +12,10 @@ class MessagesController < ApplicationController
     respond_to do |format|
       if @message.save
         format.turbo_stream
+        format.js {
+          render  :template => "app/helpers/message.js.erb",
+                  :layout => false
+          }
       end
     end
   end

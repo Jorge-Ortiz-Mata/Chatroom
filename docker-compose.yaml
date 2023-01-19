@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  database:
+    image: postgres:latest
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: password
+
+  redis:
+    image: 'redis:latest'
+    ports:
+      - '6379:6379'
+
+  development:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      target: development
+    depends_on:
+      - database
+      - redis

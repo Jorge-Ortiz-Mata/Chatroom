@@ -22,8 +22,8 @@
             <% end %>
           </div>
 
-          <div class="w-5/6 flex flex-col">
-            <%= form_with(model: [@room, Message.new], class: 'flex flex-col w-full') do |f| %>
+          <div class="w-5/6 flex flex-col" data-rooms_controller="form">
+            <%= form_with(model: [@room, Message.new], id: 'message_form', class: 'flex flex-col w-full', data: { controller: 'form', action: 'submit->form#formAction' }) do |f| %>
               <div class="flex w-full">
                 <%= f.text_field :name, class: 'w-full rounded shadow text-sm font-semibold border border-gray-100' %>
                 <%= f.submit class: 'bg-green-600 text-white font-semibold rounded p-2' %>
