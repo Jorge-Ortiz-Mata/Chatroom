@@ -1,3 +1,10 @@
-<div class="bg-gray-100 px-3 py-1 my-1 flex rounded items-center gap-2">
-  <span class="text-gray-600 font-semibold"><%= "#{message.user.email}:" %></span><span><%= message.name %></span>
-</div>
+<%= turbo_frame_tag "message_#{message.id}", class: 'bg-gray-100 px-3 py-1 my-1 flex justify-between rounded items-center gap-2' do %>
+  <div class="flex gap-1">
+    <span class="text-gray-600 font-semibold">
+      <%= "#{message.user.email}:" %>
+    </span>
+    <span>
+      <%= message.name %>
+    </span>
+  </div>
+<% end %>
