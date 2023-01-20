@@ -8,9 +8,13 @@
     </span>
   </div>
 
-  <div>
+  <div class="flex gap-2">
     <%= button_to message_edit_path, class:"text-xs font-bold", params: { message: message }, method: :get do %>
       Edit
+    <% end %>
+
+    <%= button_to room_message_path(message.room, message), class:"text-xs font-bold", params: { message: message }, method: :delete do %>
+      Delete
     <% end %>
   </div>
 <% end %>
