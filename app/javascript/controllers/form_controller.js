@@ -9,4 +9,11 @@ export default class extends Controller {
       clearTimeout(timer);
     }, 75)
   }
+
+  resetRoomForm(){
+    const timer = setTimeout(() => {
+      this.element.reset();
+      clearTimeout(timer);
+    }, 75)
+  }
 }
