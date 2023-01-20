@@ -1,24 +1,33 @@
-# README
+# Chatroom - Rails App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the Chatroom. This web application was built with Ruby on Rails 7 and Hotwire.
 
-Things you may want to cover:
+## Description
 
-* Ruby version
+You can create a new account, and create rooms. Each room can have multiple users. You can invite as many users as you want.
+This web application uses Hotwire, Turbo Streams, Turbo Frames and Stimulus JS.
 
-* System dependencies
+## Software and technologies
 
-* Configuration
+* Ruby on Rails.
+* SQLite.
+* Docker.
+* Hotwire.
+* TailwindCSS.
 
-* Database creation
+## Schema database and tables.
 
-* Database initialization
+* Rooms.
+* Users.
+* RoomUsers.
+* Messages.
 
-* How to run the test suite
+## Help
 
-* Services (job queues, cache servers, search engines, etc.)
+Corsego link: https://blog.corsego.com/turbo-hotwire-broadcasts
 
-* Deployment instructions
+## Author.
 
-* ...
+* Jorge Ortiz.
+* Software engineer.
+* San Luis Potosí, S.L.P. México.
