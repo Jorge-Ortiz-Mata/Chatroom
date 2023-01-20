@@ -7,4 +7,10 @@
       <%= message.name %>
     </span>
   </div>
+
+  <div>
+    <%= button_to message_edit_path, class:"text-xs font-bold", params: { message: message }, method: :get do %>
+      Edit
+    <% end %>
+  </div>
 <% end %>

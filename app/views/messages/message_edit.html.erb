@@ -1,0 +1,10 @@
+<%= turbo_frame_tag "message_#{@message.id}" do %>
+  <div class="flex w-full gap-1">
+    <%= form_for @message, class:'flex w-full' do |f| %>
+      <div class="flex gap-1 w-full">
+        <%= f.text_field :name, class: 'w-full rounded shadow text-sm font-semibold border border-gray-100 w-10/12' %>
+        <%= f.submit class: 'bg-green-600 text-white font-semibold rounded p-2' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
