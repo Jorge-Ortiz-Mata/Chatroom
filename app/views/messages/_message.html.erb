@@ -1,19 +1,19 @@
-<%= turbo_frame_tag "message_#{message.id}", class: 'bg-gray-100 px-3 py-1 my-1 flex justify-between rounded items-center gap-2' do %>
+<%= turbo_frame_tag "message_#{message.id}", class: 'bg-gray-200 px-3 py-2 my-2 flex justify-between rounded items-center gap-2 shadow' do %>
   <div class="flex gap-1">
-    <span class="text-gray-600 font-semibold">
+    <span class="text-gray-600 text-sm">
       <%= "#{message.user.email}:" %>
     </span>
-    <span>
+    <span class="font-semibold text-sm">
       <%= message.name %>
     </span>
   </div>
 
   <div class="flex gap-2">
-    <%= button_to message_edit_path, class:"text-xs font-bold", params: { message: message }, method: :get do %>
+    <%= button_to message_edit_path, class:"text-xs font-medium bg-sky-800 text-white py-1 px-3 rounded", params: { message: message }, method: :get do %>
       Edit
     <% end %>
 
-    <%= button_to room_message_path(message.room, message), class:"text-xs font-bold", params: { message: message }, method: :delete do %>
+    <%= button_to room_message_path(message.room, message), class:"text-xs font-medium bg-red-800 text-white py-1 px-3 rounded", params: { message: message }, method: :delete do %>
       Delete
     <% end %>
   </div>

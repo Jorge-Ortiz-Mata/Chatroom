@@ -1,7 +1,7 @@
 <%= turbo_stream_from 'room_messages_channel' %>
 
 <%= turbo_frame_tag 'rooms_controller' do %>
-  <main class="flex w-full h-screen justify-center bg-[#181D31]">
+  <main class="flex w-full h-screen bg-[#181D31]">
     <%= render 'sidebar/side_bar' %>
 
     <section class="w-5/6 flex flex-col gap-5 h-screen px-5">

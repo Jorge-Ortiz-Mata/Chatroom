@@ -1,7 +1,7 @@
 <%= turbo_stream_from 'room_details_channel' %>
 <%= turbo_stream_from 'room_messages_channel' %>
 <%= turbo_stream_from @room_users_channel %>
-<nav class="w-1/6 flex flex-col items-center justify-between border border-teal-500">
+<nav class="w-60 flex flex-col items-center justify-between border border-sky-500">
   <%= render 'sidebar/user_rooms', { user: current_user } %>
   <%= render 'sidebar/create_room' %>
 </nav>
